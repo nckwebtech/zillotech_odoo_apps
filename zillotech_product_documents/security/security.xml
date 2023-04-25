@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_zillotech_product_documents">
+        <field name="name">Product Documents</field>
+        <field name="description">Product Document Access</field>
+    </record>
+    <record id="group_users_access" model="res.groups">
+        <field name="name">User Access</field>
+        <field name="category_id" ref="zillotech_product_documents.module_zillotech_product_documents"/>
+    </record>
+    <record id="group_admin_access" model="res.groups">
+        <field name="name">Administrators Access</field>
+        <field name="implied_ids" eval="[(4, ref('zillotech_product_documents.group_users_access'))]"/>
+        <field name="category_id" ref="zillotech_product_documents.module_zillotech_product_documents"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>

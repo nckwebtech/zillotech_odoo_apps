@@ -1,0 +1,85 @@
+<odoo>
+    <record id='lot_feature_view_tree' model='ir.ui.view'>
+        <field name="name">lot.feature.tree</field>
+        <field name="model">lot.feature</field>
+        <field name="arch" type="xml">
+            <tree string="Lot Feature" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="feature_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_lot_feature' model='ir.actions.act_window'>
+        <field name="name">Lot Features</field>
+        <field name="res_model">lot.feature</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Lot Features
+            </p>
+        </field>
+    </record>
+
+    <record id='heating_cooling_view_tree' model='ir.ui.view'>
+        <field name="name">heating.cooling.tree</field>
+        <field name="model">heating.cooling</field>
+        <field name="arch" type="xml">
+            <tree string="Heating and Cooling" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="heating_cooling_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_heating_cooling' model='ir.actions.act_window'>
+        <field name="name">Heating and Cooling</field>
+        <field name="res_model">heating.cooling</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Heating and Cooling
+            </p>
+        </field>
+    </record>
+
+    <record id='indoor_amenities_view_tree' model='ir.ui.view'>
+        <field name="name">indoor.amenities.tree</field>
+        <field name="model">indoor.amenities</field>
+        <field name="arch" type="xml">
+            <tree string="Indoor Amenities" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="indoor_amenities_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_indoor_amenities' model='ir.actions.act_window'>
+        <field name="name">Heating and Cooling</field>
+        <field name="res_model">indoor.amenities</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Indoor Amenities
+            </p>
+        </field>
+    </record>
+
+    <record id='outdoor_amenities_view_tree' model='ir.ui.view'>
+        <field name="name">outdoor.amenities.tree</field>
+        <field name="model">outdoor.amenities</field>
+        <field name="arch" type="xml">
+            <tree string="Heating and Cooling" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="outdoor_amenities_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_outdoor_amenities' model='ir.actions.act_window'>
+        <field name="name">Heating and Cooling</field>
+        <field name="res_model">outdoor.amenities</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Outdoor Amenities
+            </p>
+        </field>
+    </record>
+</odoo>

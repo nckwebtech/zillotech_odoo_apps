@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    #lot features
+    <record id="feature_corner_lot" model="lot.feature">
+        <field name="feature_name">Corner Lot</field>
+    </record>
+    <record id="feature_cul_de_Sac" model="lot.feature">
+        <field name="feature_name">Cul-de-Sac</field>
+    </record>
+    <record id="feature_waterfront" model="lot.feature">
+        <field name="feature_name">Waterfront</field>
+    </record>
+    <record id="feature_water_view" model="lot.feature">
+        <field name="feature_name">Water View</field>
+    </record>
+    <record id="feature_golf_course" model="lot.feature">
+        <field name="feature_name">Golf Course</field>
+    </record>
+    <record id="feature_city_view" model="lot.feature">
+        <field name="feature_name">City View</field>
+    </record>
+    <record id="feature_lake_view" model="lot.feature">
+        <field name="feature_name">Lake View</field>
+    </record>
+
+    # Heating and Cooling
+
+    <record id="central_air" model="heating.cooling">
+        <field name="heating_cooling_type">Central Air</field>
+    </record>
+    <record id="forced_air" model="heating.cooling">
+        <field name="heating_cooling_type">Forced Air</field>
+    </record>
+    <record id="central_heat" model="heating.cooling">
+        <field name="heating_cooling_type">Central Heat</field>
+    </record>
+    <record id="window_air" model="heating.cooling">
+        <field name="heating_cooling_type">Window Air</field>
+    </record>
+
+    #Indoor Amenities
+
+    <record id="hardwood_floors" model="indoor.amenities">
+        <field name="indoor_amenities_type">Hardwood Floors</field>
+    </record>
+    <record id="fireplace" model="indoor.amenities">
+        <field name="indoor_amenities_type">Fireplace</field>
+    </record>
+    <record id="newly_remodeled_kitchen" model="indoor.amenities">
+        <field name="indoor_amenities_type">Newly Remodeled Kitchen</field>
+    </record>
+    <record id="newly_remodeled" model="indoor.amenities">
+        <field name="indoor_amenities_type">Newly Remodeled</field>
+    </record>
+    <record id="tile_floors" model="indoor.amenities">
+        <field name="indoor_amenities_type">Tile Floors</field>
+    </record>
+    <record id="finished_basement" model="indoor.amenities">
+        <field name="indoor_amenities_type">Finished Basement</field>
+    </record>
+    <record id="unfinished_basement" model="indoor.amenities">
+        <field name="indoor_amenities_type">Unfinished Basement</field>
+    </record>
+    <record id="new_carpet" model="indoor.amenities">
+        <field name="indoor_amenities_type">New Carpet</field>
+    </record>
+    <record id="newer_carpet" model="indoor.amenities">
+        <field name="indoor_amenities_type">Newer Carpet</field>
+    </record>
+
+    #Outdoor Amenities
+
+    <record id="pergola" model="outdoor.amenities">
+        <field name="outdoor_amenities_type">Pergola</field>
+    </record>
+    <record id="fenced_yard" model="outdoor.amenities">
+        <field name="outdoor_amenities_type">Fenced Yard</field>
+    </record>
+    <record id="pool" model="outdoor.amenities">
+        <field name="outdoor_amenities_type">Pool</field>
+    </record>
+    <record id="hot_tub" model="outdoor.amenities">
+        <field name="outdoor_amenities_type">Hot Tub</field>
+    </record>
+    <record id="patio" model="outdoor.amenities">
+        <field name="outdoor_amenities_type">Patio</field>
+    </record>
+    <record id="deck" model="outdoor.amenities">
+        <field name="outdoor_amenities_type">Deck</field>
+    </record>
+
+
+</odoo>

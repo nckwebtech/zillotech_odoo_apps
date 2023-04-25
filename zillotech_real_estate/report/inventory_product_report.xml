@@ -1,0 +1,13 @@
+<odoo>
+    <record id="action_inventory_product_real_report" model="ir.actions.report">
+        <field name="name">Inventory Real Estate Product</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zillotech_real_estate.inventory_real_product_details</field>
+        <field name="report_file">zillotech_real_estate.inventory_real_product_details</field>
+        <field name="print_report_name">'Inventory Product - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_product_template"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

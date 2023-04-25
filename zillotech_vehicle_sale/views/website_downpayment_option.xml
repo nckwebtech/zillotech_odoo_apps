@@ -1,0 +1,230 @@
+<odoo>
+    <template id="product_down_payment" inherit_id="website_sale.product" active="True" name="Pay Down Payment Button">
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <t t-if="product.down_payment_amount > 1">
+                <t t-call="zillotech_vehicle_sale.down_payment_button" />
+            </t>
+        </xpath>
+    </template>
+    <template id="down_payment_button" name="Down Payment">
+        <a role="button" class="btn btn-outline-primary btn-lg px-5 font-weight-bold o_we_buy_now" href="#">
+            <i class="fa fa-pencil" />
+            Pay Down Payment
+        </a>
+    </template>
+    <template id="product_down_payment_total" inherit_id="website_sale.total" active="True" name="Pay Down Payment Method">
+        <xpath expr="//tr[@id='order_total']" position="after">
+            <tr id="order_downpayment_amount" t-if="website_sale_order.down_payment_amount">
+                <td class="text-right">
+                    <strong>Down Payment Amount:</strong>
+                </td>
+                <td class="text-xl-right">
+                    <strong t-field="website_sale_order.down_payment_amount" class="monetary_field" t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}' />
+                </td>
+            </tr>
+            <tr id="order_balance_amount" t-if="website_sale_order.balance_amount">
+                <td class="text-right">
+                    <strong>Balance Amount:</strong>
+                </td>
+                <td class="text-xl-right">
+                    <strong t-field="website_sale_order.balance_amount" class="monetary_field" t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}' />
+                </td>
+            </tr>
+        </xpath>
+    </template>
+    <template inherit_id='website_sale.product' id="product_details">
+        <xpath expr="//section[@id='product_detail']" position="after">
+            <t t-if="product.detailed_type == 'vehicle'">
+                <section t-attf-class="container py-4 oe_website_sale #{'discount' if combination_info['has_discounted_price'] else ''}" id="product_detail" t-att-data-view-track="view_track and '1' or '0'" t-att-data-product-tracking-info="json.dumps(request.env['product.template'].get_google_analytics_data(combination_info))">
+                    <h2>
+                        <strong>Details</strong>
+                    </h2>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <t t-call="zillotech_vehicle_sale.shop_product_details_left" />
+                        </div>
+                        <div class="col-lg-6">
+                            <t t-call="zillotech_vehicle_sale.shop_product_details_right" />
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+    <template inherit_id='website_sale.payment' id="replace_pay_now">
+        <xpath expr="//div[@id='payment_method']" position="replace">
+            <div t-if="acquirers or tokens" id="payment_method" class="mt-3">
+                <t t-if="website_sale_order.down_payment_amount">
+                    <h3 class="mb24">Pay with</h3>
+                    <t t-call="payment.checkout">
+                        <t t-set="footer_template_id" t-value="'website_sale.payment_footer'" />
+                        <t t-set="submit_button_label">Pay Down Payment Now</t>
+                    </t>
+                </t>
+                <t t-elif="website_sale_order.down_payment_amount == 0">
+                    <h3 class="mb24">Pay with</h3>
+                    <t t-call="payment.checkout">
+                        <t t-set="footer_template_id" t-value="'website_sale.payment_footer'" />
+                        <t t-set="submit_button_label">Pay Now</t>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </template>
+    <template inherit_id='website_sale.product_price' id="down_payment_amount_in_product_page">
+        <xpath expr="//h3[hasclass('css_non_editable_mode_hidden')]" position="after">
+            <t t-if="product.down_payment_amount">
+                <h3 class="css_non_editable_mode_hidden_down_payment decimal_precision" t-att-data-precision="str(website.currency_id.decimal_places)">
+                    <span t-field="product.down_payment_amount" t-options='{
+                   "widget": "monetary",
+                   "display_currency": product.currency_id,
+               }' />
+                    Down Payment
+                </h3>
+            </t>
+        </xpath>
+    </template>
+    <template id="shop_product_details_left" name="Details Left">
+        <div class="shop_product_details_left_1">
+            <t t-if="product.seats">
+                <strong>Seats Number :</strong>
+                <span t-field="product.seats" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.doors">
+                <strong>Doors Number :</strong>
+                <span t-field="product.doors" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.interior_color">
+                <strong>Interior Color :</strong>
+                <span t-field="product.interior_color" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.exterior_color">
+                <strong>Exterior Color :</strong>
+                <span t-field="product.exterior_color" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.model_year">
+                <strong>Model Year :</strong>
+                <span t-field="product.model_year" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.default_fuel_type">
+                <strong>Fuel Type :</strong>
+                <span t-field="product.default_fuel_type" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.default_co2">
+                <strong>CO2 Emissions :</strong>
+                <span t-field="product.default_co2" />&amp;nbsp;g/km
+                <br />
+                <br />
+            </t>
+            <t t-if="product.default_mileage">
+                <strong>Vehicle Mileage :</strong>
+                <span t-field="product.default_mileage" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.co2_standard != 0">
+                <strong>Co2 Standard :</strong>
+                <span t-field="product.co2_standard" />
+            </t>
+        </div>
+        <br />
+        <br />
+        <br />
+        <t t-if="product.vehicle_features != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'" t-call="zillotech_vehicle_sale.vehicle_feature_template" />
+    </template>
+    <template id="vehicle_feature_template">
+        <div class="container">
+            <h2>
+                <strong t-if="product.vehicle_features">Features</strong>
+            </h2>
+            <div t-field="product.vehicle_features" class="text-muted" />
+        </div>
+    </template>
+    <template id="shop_product_details_right" name="Details Right">
+        <div class="shop_product_details_right_1">
+            <t t-if="product.vin_code">
+                <strong>VIN Code :</strong>
+                <span t-field="product.vin_code" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.vehicle_condition">
+                <strong>Vehicle Condition :</strong>
+                <span t-field="product.vehicle_condition" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.start_date">
+                <strong>Start Date :</strong>
+                <span t-field="product.start_date" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.title_status">
+                <strong>Title Status:</strong>
+                <span t-field="product.title_status" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.engine ">
+                <strong>Engine :</strong>
+                <span t-field="product.engine" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.drivetrain">
+                <strong>Drivetrain :</strong>
+                <span t-field="product.drivetrain" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.power">
+                <strong>Power :</strong>
+                <span t-field="product.power" />&amp;nbsp;kW
+                <br />
+                <br />
+            </t>
+            <t t-if="product.horsepower">
+                <strong>Horsepower :</strong>
+                <span t-field="product.horsepower" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.horsepower_tax">
+                <strong>Horsepower Taxation :</strong>
+                <span t-field="product.horsepower_tax" />
+                <br />
+                <br />
+            </t>
+            <t t-if="product.transmission ">
+                <strong>Transmission :</strong>
+                <span t-field="product.transmission" />
+            </t>
+        </div>
+    </template>
+    <template id="product_catalog_print" inherit_id="website_sale.product" active="True" name="Print Catalog">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="after">
+            <t t-if="product.detailed_type == 'vehicle'">
+                <div class="container">
+                    <br />
+                    <a t-att-href="'/shop/print_catalog?product_id=%s' % product.id" class="btn btn-primary btn_cta">
+                        Print Catalog
+                    </a>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

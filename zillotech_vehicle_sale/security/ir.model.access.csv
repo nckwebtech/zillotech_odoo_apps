@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+used_vehicle_model_brand_access_right,used_vehicle_model_brand_access_right,model_used_vehicle_model_brand,,1,1,1,1
+used_vehicle_interior_color,used_vehicle_interior_color_access_right,model_used_vehicle_interior_color,,1,1,1,1
+used_vehicle_exterior_color,used_vehicle_exterior_color_access_right,model_used_vehicle_exterior_color,,1,1,1,1
+used_vehicle_type,used_vehicle_type_access_right,model_used_vehicle_type,,1,1,1,1
+used_vehicle_condition,used_vehicle_condition_access_right,model_used_vehicle_condition,,1,1,1,1
