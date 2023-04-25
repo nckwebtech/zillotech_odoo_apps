@@ -1,0 +1,21 @@
+{
+    'name': 'Debranding in Website',
+    'version': '15.0.1.0.0',
+    'summary': '',
+    'description': '',
+    'category': 'Website',
+    'author': 'Zillo Tech',
+    'company': 'Zillo WebTech',
+    'maintainer': 'Zillo WebTech',
+    'website': 'https://www.nckwebtech.com/',
+    'license': 'LGPL-3',
+    "data": [
+        'views/webclient_templates.xml',
+    ],
+    'images': ['static/description/banner.png'],
+    'depends': ['website','web','website_sale'],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+    'sequence': 10,
+}

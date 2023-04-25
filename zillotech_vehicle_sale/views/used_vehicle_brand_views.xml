@@ -1,0 +1,187 @@
+<odoo>
+    <record id='used_vehicle_model_brand_view_tree' model='ir.ui.view'>
+        <field name="name">used.vehicle.model.brand.tree</field>
+        <field name="model">used.vehicle.model.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Model Make">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='used_vehicle_model_brand_view_form' model='ir.ui.view'>
+        <field name="name">used.vehicle.model.brand.form</field>
+        <field name="model">used.vehicle.model.brand</field>
+        <field name="arch" type="xml">
+            <form string="Model Make">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="image_128" widget="image" class="oe_avatar"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='used_vehicle_model_brand_view_kanban' model='ir.ui.view'>
+        <field name="name">used.vehicle.model.brandkanban</field>
+        <field name="model">used.vehicle.model.brand</field>
+        <field name="arch" type="xml">
+            <kanban default_order="name">
+                <field name="id"/>
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_vignette oe_semantic_html_override oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" href="#"
+                                   aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <a role="menuitem" type="open" class="dropdown-item">Properties</a>
+                                </div>
+                            </div>
+                            <div class="o_kanban_image">
+                                <img alt="img"
+                                     t-att-src="kanban_image('used.vehicle.model.brand', 'image_128', record.id.raw_value)"
+                                     class="o_image_64_max" height="52"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <h4 class="oe_partner_heading">
+                                    <a type="open" class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="used_vehicle_model_brand_view_search" model="ir.ui.view">
+        <field name="name">used.vehicle.model.brand.view.search</field>
+        <field name="model">used.vehicle.model.brand</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id='action_used_vehicle_brand' model='ir.actions.act_window'>
+        <field name="name">Manufacturers</field>
+        <field name="res_model">used.vehicle.model.brand</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new manufacturer
+            </p>
+        </field>
+    </record>
+
+    <record id='used_vehicle_exterior_color_view_tree' model='ir.ui.view'>
+        <field name="name">used.vehicle.exterior.color.tree</field>
+        <field name="model">used.vehicle.exterior.color</field>
+        <field name="arch" type="xml">
+            <tree string="Exterior Color Make" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="exterior_color"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='used_vehicle_interior_color_view_tree' model='ir.ui.view'>
+        <field name="name">used.vehicle.interior.color.tree</field>
+        <field name="model">used.vehicle.interior.color</field>
+        <field name="arch" type="xml">
+            <tree string="Interior Color Make" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="interior_color"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id='used_vehicle_type_view_tree' model='ir.ui.view'>
+        <field name="name">used.vehicle.color.tree</field>
+        <field name="model">used.vehicle.type</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Type" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="vehicle_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='used_vehicle_condition_view_tree' model='ir.ui.view'>
+        <field name="name">used.vehicle.condition.tree</field>
+        <field name="model">used.vehicle.condition</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Condition" editable="bottom" create="1" delete="1" multi_edit="1">
+                <field name="vehicle_condition"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='action_used_vehicle_exterior_color' model='ir.actions.act_window'>
+        <field name="name">Vehicle Exterior Color</field>
+        <field name="res_model">used.vehicle.exterior.color</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Exterior Color
+            </p>
+        </field>
+    </record>
+
+    <record id='action_used_vehicle_interior_color' model='ir.actions.act_window'>
+        <field name="name">Vehicle Interior Color</field>
+        <field name="res_model">used.vehicle.interior.color</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Interior Color
+            </p>
+        </field>
+    </record>
+
+    <record id='action_used_vehicle_type' model='ir.actions.act_window'>
+        <field name="name">Vehicle Type</field>
+        <field name="res_model">used.vehicle.type</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Vehicle Type
+            </p>
+        </field>
+    </record>
+
+    <record id='action_used_vehicle_condition' model='ir.actions.act_window'>
+        <field name="name">Vehicle Condition</field>
+        <field name="res_model">used.vehicle.condition</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Vehicle Condition
+            </p>
+        </field>
+    </record>
+
+    <menuitem action="action_used_vehicle_brand" id="used_vehicle_model_brand_menu"
+              parent="zillotech_vehicle_sale.vehicle_config_main" sequence="5"/>
+    <menuitem action="action_used_vehicle_interior_color" id="used_vehicle_interior_color_menu"
+              parent="zillotech_vehicle_sale.vehicle_config_main" sequence="6"/>
+    <menuitem action="action_used_vehicle_exterior_color" id="used_vehicle_exterior_color_menu"
+              parent="zillotech_vehicle_sale.vehicle_config_main" sequence="7"/>
+    <menuitem action="action_used_vehicle_type" id="used_vehicle_type_menu"
+              parent="zillotech_vehicle_sale.vehicle_config_main" sequence="8"/>
+    <menuitem action="action_used_vehicle_condition" id="used_vehicle_condition_menu"
+              parent="zillotech_vehicle_sale.vehicle_config_main" sequence="9"/>
+
+
+</odoo>

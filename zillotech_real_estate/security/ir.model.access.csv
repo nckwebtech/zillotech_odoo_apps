@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lot_feature,lot.feature,model_lot_feature,,1,1,1,1
+access_heating_cooling,heating.cooling,model_heating_cooling,,1,1,1,1
+access_indoor_amenities,indoor.amenities,model_indoor_amenities,,1,1,1,1
+access_outdoor_amenities,outdoor.amenities,model_outdoor_amenities,,1,1,1,1
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <!-- inheriting footer view -->
+    <template id="website_footer_debranding" inherit_id="website.brand_promotion" name="Footer Debranding" active="True"
+              priority="99">
+        <xpath expr="//div[@class='o_brand_promotion']" position="replace">
+            <div class="o_brand_promotion"/>
+        </xpath>
+    </template>
+
+    <template id="header_hide_empty_cart_link" inherit_id="website_sale.header_cart_link"
+              name="Header Hide Empty Cart link" active="False" customize_show="True">
+        <xpath expr="//t[@t-set='show_cart']" position="after">
+            <t t-set="show_cart" t-value="show_cart and website_sale_order and website_sale_order.cart_quantity"/>
+        </xpath>
+    </template>
+</data>

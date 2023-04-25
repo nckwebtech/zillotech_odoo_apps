@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="inventory_product_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="product">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-8" style="margin:auto;">
+                                <table class="table table-sm"
+                                       style="border: 3px solid black !important;font-size : 12px;"
+                                       border="0" cellpadding="0" cellspacing="0" padding="0" margin="0">
+                                    <tr>
+                                        <td width="40%">
+                                            <p style="text-align:center;padding-top:10px;padding: 10px;">
+                                                <img t-if="not product.image_1920"
+                                                     t-att-src="'/web/static/src/img/placeholder.png'" height="100"
+                                                     border="1" width="100"/>
+                                                <img t-if="product.image_1920"
+                                                     t-att-src="'data:image/png;base64,%s' % to_text(product.image_1920)"
+                                                     height="100" border="1" width="100"/>
+                                            </p>
+                                        </td>
+                                        <td width="60%">
+                                            <table>
+                                                <tr t-if="product.name">
+                                                    <td colspan="3" class="text-center">
+                                                        <strong t-field="product.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr t-if="product.list_price">
+                                                    <td>
+                                                        <span>
+                                                            <strong>Sales Price:</strong>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="o_label_price" t-field="product.list_price"
+                                                                t-options="{'widget': 'monetary', 'label_price': True}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr t-if="product.down_payment_amount">
+                                                    <td>
+                                                        <span>
+                                                            <strong>Down Payment Amount:</strong>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="o_label_price"
+                                                                t-field="product.down_payment_amount"
+                                                                t-options="{'widget': 'monetary', 'label_price': True}"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <t t-if="product.detailed_type == 'vehicle'">
+                            <table class="table table-sm o_main_table" name="general_information"
+                                   style="font-size : 13px;" border="0"
+                                   cellpadding="0" cellspacing="0" padding="0" margin="0">
+                                <tr rowspan="2">
+                                    <td colspan="3" class="text-center">
+                                        <Strong>General Information</Strong>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.seats">
+                                    <td>
+                                        <span>
+                                            <span>Seats Number</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.seats"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.doors">
+                                    <td>
+                                        <span>
+                                            <span>Doors Number</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.doors"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.interior_color">
+                                    <td>
+                                        <span>
+                                            <span>Interior Color</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.interior_color"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.exterior_color">
+                                    <td>
+                                        <span>
+                                            <span>Exterior Color</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.exterior_color"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.model_year">
+                                    <td>
+                                        <span>
+                                            <span>Model Year</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.model_year"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.default_fuel_type">
+                                    <td>
+                                        <span>
+                                            <span>Fuel Type</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.default_fuel_type"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.default_co2">
+                                    <td>
+                                        <span>
+                                            <span>CO2 Emissions</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.default_co2"/>&amp;nbsp;g/km
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.default_mileage">
+                                    <td>
+                                        <span>
+                                            <span>Mileage</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.default_mileage"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.co2_standard">
+                                    <td>
+                                        <span>
+                                            <span>Co2 Standard</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.co2_standard"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.vin_code">
+                                    <td>
+                                        <span>
+                                            <span>VIN Code</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.vin_code"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.vehicle_condition">
+                                    <td>
+                                        <span>
+                                            <span>Condition</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.vehicle_condition"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.start_date">
+                                    <td>
+                                        <span>
+                                            <span>Start Date</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.start_date"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.title_status">
+                                    <td>
+                                        <span>
+                                            <span>Title Status</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.title_status"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.engine">
+                                    <td>
+                                        <span>
+                                            <span>Engine</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.engine"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.drivetrain">
+                                    <td>
+                                        <span>
+                                            <span>Drivetrain</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.drivetrain"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.power">
+                                    <td>
+                                        <span>
+                                            <span>Power</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.power"/>&amp;nbsp;kW
+                                    </td>
+                                </tr>
+                                <tr t-if="product.horsepower">
+                                    <td>
+                                        <span>
+                                            <span>Horsepower</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.horsepower"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.horsepower_tax">
+                                    <td>
+                                        <span>
+                                            <span>Horsepower Taxation</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.horsepower_tax"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.transmission">
+                                    <td>
+                                        <span>
+                                            <span>Transmission</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.transmission"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.vehicle_features != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">
+                                    <td>
+                                        <span>
+                                            <span>Features</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div t-field="product.vehicle_features" class="text-muted"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+<!--                        <t t-if="product.ecommerce_description">-->
+<!--                            <div class="col-xs-8">-->
+<!--                                <table class="table table-sm o_main_table" name="ecom_description"-->
+<!--                                       t-if="product.ecommerce_description != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'">-->
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            <span>-->
+<!--                                                <Strong>Description</Strong>-->
+<!--                                            </span>-->
+<!--                                        </td>-->
+
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            <div t-field="product.ecommerce_description" class="text-muted"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </table>-->
+<!--                            </div>-->
+<!--                        </t>-->
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+
+</odoo>

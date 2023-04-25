@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="vehicle_config_main" name="Pre-owned Vehicle Details" parent="stock.menu_stock_config_settings"
+              groups="stock.group_stock_manager" sequence="1"/>
+
+</odoo>

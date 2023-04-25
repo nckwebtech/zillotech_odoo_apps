@@ -1,0 +1,85 @@
+<odoo>
+    <record id="product_template_form_vehicle_inherit" model="ir.ui.view">
+        <field name="name">product.template.inherited.vehicle.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='taxes_id']" position="before">
+                <field name="down_payment_amount" string="Down Payment Amount" widget='monetary'
+                       options="{'currency_field': 'currency_id'}"
+                       optional="show" decoration-muted="not sale_ok"/>
+            </xpath>
+            <xpath expr="//group[@name='group_standard_price']" position="after">
+
+                <group attrs="{'invisible': [('detailed_type', '!=', 'vehicle')]}">
+                    <field name="brand_id" placeholder="e.g. Tesla"/>
+                </group>
+                <group attrs="{'invisible': [('detailed_type', '!=', 'vehicle')]}">
+                    <field name="vehicle_type"/>
+                </group>
+                <group col="4" colspan="6">
+                    <notebook>
+                        <page string="Information" name="information"
+                              attrs="{'invisible': [('detailed_type', '!=', 'vehicle')]}">
+                            <group col="2">
+                                <group string="Model">
+                                    <field name="seats"/>
+                                    <field name="doors"/>
+                                    <field name="interior_color" widget="many2many_tags"/>
+                                    <field name="exterior_color" widget="many2many_tags"/>
+                                    <field name="model_year"/>
+                                </group>
+
+                                <group string="Engine">
+                                    <field name="default_fuel_type" required="1"/>
+                                    <label for="default_co2"/>
+                                    <div class="o_row" name="default_co2">
+                                        <field name="default_co2"/>
+                                        <span>g/km</span>
+                                    </div>
+                                    <label for="default_mileage"/>
+                                    <div class="o_row" name="default_mileage">
+                                        <field name="default_mileage"/>
+                                    </div>
+                                    <field name="co2_standard"/>
+                                    <field name="transmission"/>
+                                    <label for="power"/>
+                                    <div class="o_row">
+                                        <field name="power"/>
+                                        <span>kW</span>
+                                    </div>
+                                    <field name="horsepower"/>
+                                    <field name="horsepower_tax"/>
+                                </group>
+                                <group string="Details" col="4" colspan="6">
+                                    <field name="vin_code"/>
+                                    <field name="vehicle_condition"/>
+                                    <field name="start_date"/>
+                                    <field name="title_status"/>
+                                    <field name="engine"/>
+                                    <field name="drivetrain"/>
+                                </group>
+                                <group string="Features">
+                                    <field name="vehicle_features" nolabel="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_template_button_view" model="ir.ui.view">
+        <field name="name">product.template.button.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="after">
+                <button string="Print Catalog" type="object"
+                        name="action_print_catalog" attrs="{'invisible': [('detailed_type', '!=', 'vehicle')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

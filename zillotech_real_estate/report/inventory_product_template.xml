@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="inventory_real_product_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="product">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-8" style="margin:auto;">
+                                <table class="table table-sm"
+                                       style="border: 3px solid black !important;font-size : 12px;"
+                                       border="0" cellpadding="0" cellspacing="0" padding="0" margin="0">
+                                    <tr>
+                                        <td width="40%">
+                                            <p style="text-align:center;padding-top:10px;padding: 10px;">
+                                                <img t-if="not product.image_1920"
+                                                     t-att-src="'/web/static/src/img/placeholder.png'" height="100"
+                                                     border="1" width="100"/>
+                                                <img t-if="product.image_1920"
+                                                     t-att-src="'data:image/png;base64,%s' % to_text(product.image_1920)"
+                                                     height="100" border="1" width="100"/>
+                                            </p>
+                                        </td>
+                                        <td width="60%">
+                                            <table>
+                                                <tr t-if="product.name">
+                                                    <td colspan="3" class="text-center">
+                                                        <strong t-field="product.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr t-if="product.list_price">
+                                                    <td>
+                                                        <span>
+                                                            <strong>Sales Price:</strong>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="o_label_price" t-field="product.list_price"
+                                                                t-options="{'widget': 'monetary', 'label_price': True}"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <t t-if="product.detailed_type == 'real_estate'">
+                            <table class="table table-sm o_main_table" name="general_information"
+                                   style="font-size : 13px;" border="0"
+                                   cellpadding="0" cellspacing="0" padding="0" margin="0">
+                                <tr rowspan="2">
+                                    <td colspan="3" class="text-center">
+                                        <Strong>General Information</Strong>
+                                    </td>
+                                </tr>
+                                <tr t-if="product.owners_f_name">
+                                    <td>
+                                        <span>
+                                            <span>Owner Name</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.owners_f_name"/>
+                                        <span t-if="product.owners_l_name" t-field="product.owners_l_name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>
+                                            <span>Address</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-if="product.street" t-field="product.street"/>
+                                        <br/>
+                                        <span t-if="product.street2" t-field="product.street2"/>
+                                        <br/>
+                                        <span t-if="product.city" t-field="product.city"/>
+                                        <span t-if="product.state_id" t-field="product.state_id.name"/>
+                                        <span t-if="product.country_id" t-field="product.country_id.name"/>
+                                        <span t-if="product.zip" t-field="product.zip"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.beds">
+                                    <td>
+                                        <span>
+                                            <span>Beds</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.beds"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.bath">
+                                    <td>
+                                        <span>
+                                            <span>Baths</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.bath"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.house_sq">
+                                    <td>
+                                        <span>
+                                            <span>House Sq Foot</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.house_sq"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.lot_size">
+                                    <td>
+                                        <span>
+                                            <span>Lot Size</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.lot_size"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.property_type">
+                                    <td>
+                                        <span>
+                                            <span>Property Type</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.property_type"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.age_of_home">
+                                    <td>
+                                        <span>
+                                            <span>Age of Home</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.age_of_home"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.stories">
+                                    <td>
+                                        <span>
+                                            <span>Stories</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.stories"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.garage">
+                                    <td>
+                                        <span>
+                                            <span>Garage</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.garage"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.exterior_condition">
+                                    <td>
+                                        <span>
+                                            <span>Exterior Condition</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.exterior_condition"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.roofing">
+                                    <td>
+                                        <span>
+                                            <span>Roofing</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.roofing"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.listing_msg">
+                                    <td>
+                                        <span>
+                                            <span>Listing Message</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.listing_msg"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.place_description">
+                                    <td>
+                                        <span>
+                                            <span>Description</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span t-field="product.place_description"/>
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.lot_features_ids">
+                                    <td>
+                                        <span>
+                                            <span>Lot Features</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="product.lot_features_ids" t-as="feature">
+                                            <span t-field="feature.feature_name"/>,
+                                        </t>
+
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.heating_cooling_ids">
+                                    <td>
+                                        <span>
+                                            <span>Heating and Cooling</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="product.heating_cooling_ids" t-as="line">
+                                            <span t-field="line.heating_cooling_type"/>,
+                                        </t>
+
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.indor_amenities_ids">
+                                    <td>
+                                        <span>
+                                            <span>Indoor Amenities</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="product.indor_amenities_ids" t-as="line">
+                                            <span t-field="line.indoor_amenities_type"/>,
+                                        </t>
+
+                                    </td>
+                                </tr>
+
+                                <tr t-if="product.outdoor_amenities_ids">
+                                    <td>
+                                        <span>
+                                            <span>Outdoor Amenities</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="product.indor_amenities_ids" t-as="line">
+                                            <span t-field="line.indoor_amenities_type"/>,
+                                        </t>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+
+</odoo>
