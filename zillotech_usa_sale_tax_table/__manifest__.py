@@ -1,0 +1,25 @@
+
+{
+    'name': 'USA Sales Tax Table',
+    'version': '15.0.1.0.0',
+    'summary': 'USA Sales Tax Table',
+    'sequence': 10,
+    'description': """""",
+    'category': 'Accounting/Accounting',
+    'author': 'Zillo Tech',
+    'company': 'Zillo WebTech',
+    'maintainer': 'Zillo WebTech',
+    'website': 'https://www.nckwebtech.com/',
+    'images': ['static/description/banner.png'],
+    'depends': ['base_setup', 'account', 'sale', 'sale_management', 'base', 'contacts', 'zillotech_usa_sale_tax_installation', 'calendar'],
+    'data': ['security/ir.model.access.csv',
+             'views/res_user_views.xml',
+             'views/sale_tax_table_view.xml',
+             ],
+    'demo': [],
+    'installable': True,
+    'application': True,
+    'sequence': 10,
+    'license': 'LGPL-3',
+
+}

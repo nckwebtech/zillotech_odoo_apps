@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="sale_tax_table_tree" model="ir.ui.view">
+        <field name="name">sale.tax.table.tree</field>
+        <field name="model">tax.table</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state_id"/>
+                <field name="sales_tax_id"/>
+                <field name="tax_shipping"/>
+            </tree>
+        </field>
+    </record>
+    <record id="sale_tax_table_form" model="ir.ui.view">
+        <field name="name">tax.table.form</field>
+        <field name="model">tax.table</field>
+        <field name="arch" type="xml">
+            <form string="Sales Tax">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="state_id"
+                                   options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                            <field name="sales_tax_id"/>
+                            <field name="tax_shipping" widget="radio"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_tax_action" model="ir.actions.act_window">
+        <field name="name">USA Sales Tax Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tax.table</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Top menu -->
+    <menuitem action="sale_tax_action"
+              id="sale_tax_table"
+              name="USA Sales Tax Table"
+              parent="account.menu_finance_configuration"
+              sequence="100"/>
+
+</odoo>
