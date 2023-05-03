@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_sale" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.invoice</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='account']/div[hasclass('o_settings_container')][2]/div[hasclass('o_setting_box')][4]"
+                   position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="sale_tax_settings">
+                    <div class="o_setting_left_pane">
+                        <field name="module_nck_usa_sale_tax_table"/>
+                    </div>
+                    <div class="o_setting_right_pane" name="account_sale_tax_right_pane">
+                        <label for="module_nck_usa_sale_tax_table" string="USA Sales Tax Table"/>
+                        <a href="#"
+                           title="Documentation" class="o_doc_link" target="_blank"></a>
+                        <div class="text-muted">
+                            Set Sales Tax for USA states.
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
