@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="page_details_template">
+    <div t-attf-class="page_details page_details_{{ page_details_num }}">
+        <div class="row summary_line">
+            <div class="col-xs-4 text-left">
+                <span t-esc="page_data['partner_name']"/>
+            </div>
+            <div class="col-xs-4 text-middle">
+                <span t-esc="page_data['date']"/>
+            </div>
+            <div class="col-xs-4 text-right sequence_number">
+                <span t-if="page_data['sequence_number']" t-esc="page_data['sequence_number']"/>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-sm detailed_lines" t-if="page_data['detailed_lines']">
+            <thead><tr>
+                <th class="text-left">Due Date</th>
+                <th class="text-left">Description</th>
+                <th class="text-right">Invoice Amount</th>
+                <th class="text-right">Balance Due</th>
+                <th class="text-right">Payment</th>
+            </tr></thead>
+            <tbody>
+                <t t-foreach="page_data['detailed_lines']" t-as="detailed_line">
+                    <t t-if="detailed_line.get('header')">
+                        <tr><th colspan="6"><t t-esc="detailed_line['name']"/></th></tr>
+                    </t>
+                    <t t-if="not detailed_line.get('header')"><tr>
+                        <td class="text-left"><t t-if="detailed_line['due_date']" t-esc="detailed_line['due_date']"/></td>
+                        <td class="text-left text-truncate" style="max-width: 500px;"><t t-esc="detailed_line['number']"/></td>
+                        <td class="text-right"><t t-esc="detailed_line['amount_total']"/></td>
+                        <td class="text-right">
+                            <t t-esc="detailed_line['amount_residual']"/>
+                        </td>
+                        <td class="text-right"><t t-esc="detailed_line['amount_paid']"/></td>
+                    </tr></t>
+                </t>
+                <tr t-if="page_data['detailed_cropped']"><td colspan="6" class="text-right">...</td></tr>
+            </tbody>
+        </table>
+        <div class="page_total_amount">Check Amount:
+            <span class="text-nowrap"><t t-esc="page_data['amount']"/></span>
+        </div>
+    </div>
+</template>
+</odoo>

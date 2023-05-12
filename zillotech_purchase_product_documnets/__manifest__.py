@@ -1,0 +1,16 @@
+{
+    "name": "Product Documents For Purchase",
+    "summary": "Product Documents For Purchase",
+    "version": "16.0.1.0.0",
+    "category": "Website",
+    "author": "Zillo Tech",
+    "company": "Zillo WebTech",
+    "maintainer": "Zillo WebTech",
+    "website": "https://www.nckwebtech.com/",
+    "license": "AGPL-3",
+    "installable": True,
+    "depends": ['purchase', 'zillotech_product_documents', ],
+    "data": ['views/purchase_inherit_product_documents.xml'],
+    'images': ['static/description/banner.png'],
+    "application": True,
+}

@@ -1,0 +1,26 @@
+<odoo>
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.inherited.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="page_purchase_product_hide" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page name="product_documents" string="Product Documents"
+                      attrs="{'invisible': [('page_purchase_product_hide', '=', True)]}">
+                    <group string="Product Documents" name="product_docs">
+                        <group>
+                            <field name="product_purchase_compute_field" invisible="1"/>
+                            <field name="purchase_order_product_document_ids" widget="many2many_tags"
+                                   attrs="{'readonly': [('product_purchase_compute_field', '=', True)]}"
+                                   options="{'no_create': True,'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

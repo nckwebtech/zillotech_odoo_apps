@@ -1,0 +1,63 @@
+.us_check_bottom_page {
+    .page_details_1 {
+        top: 0.3in;
+    }
+    .page_details_2 {
+        top: 4.15in;
+    }
+    .check_div {
+        top: 7.5in;
+        height: 2.80in;
+    }
+
+    .check_div .sequence_number {
+        top: 0.2in;
+        left: 6.9in;
+        width: 0.7in;
+    }
+    .check_bottom_date {
+        width: 1.50in;
+        text-align: center;
+//         top: 0.6in;
+//         left: 6.51in;
+
+    }
+    .check_bottom_payee_name {
+        width: 5.5in;
+        text-align: left;
+//         top: 1.08in;
+//         left: 0.9in;
+
+    }
+    .check_bottom_amount {
+        width: 1.08in;
+        text-align: left;
+//         top: 1.08in;
+//         left: 6.77in;
+
+    }
+    .check_bottom_amount_in_word {
+        text-align: left;
+        overflow: hidden;
+        font-weight: bold;
+//         top: 1.47in;
+//         left: 0.25in;
+        width: 7in;
+
+    }
+    .check_bottom_payee_addr {
+        line-height: 1.1em;
+//         top: 1.65in;
+//         left: 1in;
+
+    }
+    .check_bottom_memo {
+        text-align: left;
+        font-size: 0.9em;
+//         top: 2.45in;
+//         left: 0.6in;
+        width: 2.9in;
+        overflow: hidden;
+
+    }
+}

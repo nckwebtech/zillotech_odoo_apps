@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <record id="check_config_top" model="check.config.template">
+            <field name="template_name">Print Check (Top)</field>
+            <field name="check_printing_top_margin">.25</field>
+            <field name="check_printing_left_margin">.25</field>
+            <field name="check_printing_layout_template">zillotech_us_check_print.action_print_check_top</field>
+            <field name="css_top_date_top">0.55</field>
+            <field name="css_top_date_left">6.51</field>
+            <field name="css_check_top_payee_name_top">1.09</field>
+            <field name="css_check_top_payee_name_left">0.85</field>
+            <field name="css_check_top_amount_top">1.07</field>
+            <field name="css_check_top_amount_left">6.77</field>
+            <field name="css_check_top_amount_in_word_top">1.45</field>
+            <field name="css_check_top_amount_in_word_left">0.25</field>
+            <field name="css_check_top_payee_addr_top">1.65</field>
+            <field name="css_check_top_payee_addr_left">0.85</field>
+            <field name="css_check_top_memo_top">2.41</field>
+            <field name="css_check_top_memo_left">0.60</field>
+        </record>
+
+        <record id="check_config_middle" model="check.config.template">
+            <field name="template_name">Print Check (Middle)</field>
+            <field name="check_printing_top_margin">.25</field>
+            <field name="check_printing_left_margin">.25</field>
+            <field name="check_printing_layout_template">zillotech_us_check_print.action_print_check_middle</field>
+            <field name="css_top_date_top">0.1</field>
+            <field name="css_top_date_left">6.75</field>
+            <field name="css_check_top_payee_name_top">0.6</field>
+            <field name="css_check_top_payee_name_left">0.63</field>
+            <field name="css_check_top_amount_top">0.6</field>
+            <field name="css_check_top_amount_left">6.38</field>
+            <field name="css_check_top_amount_in_word_top">1.0</field>
+            <field name="css_check_top_amount_in_word_left">0.05</field>
+            <field name="css_check_top_payee_addr_top">1.15</field>
+            <field name="css_check_top_payee_addr_left">0.63</field>
+            <field name="css_check_top_memo_top">1.98</field>
+            <field name="css_check_top_memo_left">0.43</field>
+        </record>
+
+        <record id="check_config_bottom" model="check.config.template">
+            <field name="template_name">Print Check (Bottom)</field>
+            <field name="check_printing_layout_template">zillotech_us_check_print.action_print_check_bottom</field>
+            <field name="check_printing_top_margin">.25</field>
+            <field name="check_printing_left_margin">.25</field>
+            <field name="css_top_date_top">0.6</field>
+            <field name="css_top_date_left">6.51</field>
+            <field name="css_check_top_payee_name_top">1.08</field>
+            <field name="css_check_top_payee_name_left">0.9</field>
+            <field name="css_check_top_amount_top">1.08</field>
+            <field name="css_check_top_amount_left">6.77</field>
+            <field name="css_check_top_amount_in_word_top">1.47</field>
+            <field name="css_check_top_amount_in_word_left">0.25</field>
+            <field name="css_check_top_payee_addr_top">1.65</field>
+            <field name="css_check_top_payee_addr_left">0.85</field>
+            <field name="css_check_top_memo_top">2.41</field>
+            <field name="css_check_top_memo_left">0.60</field>
+        </record>
+
+    </data>
+</odoo>

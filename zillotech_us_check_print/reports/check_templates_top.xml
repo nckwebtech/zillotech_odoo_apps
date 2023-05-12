@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="print_check_top">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="data">
+                    <div t-att-data-oe-model="data._name" t-att-data-oe-id="data.id"
+                         t-foreach="data._pages_data_check()"
+                         t-as="page_data" class="page article check_page_css us_check_top_page"
+                         t-attf-style="top: {{ data.company_id.account_check_template_id.check_printing_top_margin }}in; left: {{ data.company_id.account_check_template_id.check_printing_left_margin }}in;">
+                        <t t-call="zillotech_us_check_print.print_check_template_top"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="print_check_template_top">
+            <div class="check_div">
+                <t t-if="page_data['state'] == 'cancelled'">
+                    <div class="o-watermark">VOID</div>
+                </t>
+                <div class="sequence_number" t-if="page_data['sequence_number'] and page_data['manual_sequencing']"
+                     t-esc="page_data['sequence_number']"/>
+                <div class="check_top_date" t-esc="page_data['date']"
+                     t-attf-style="top: {{ data.company_id.account_check_template_id.css_top_date_top }}in; left: {{ data.company_id.account_check_template_id.css_top_date_left }}in;"/>
+                <div class="check_top_payee_name" t-esc="page_data['partner_name']"
+                     t-attf-style="top: {{ data.company_id.account_check_template_id.css_check_top_payee_name_top }}in; left: {{ data.company_id.account_check_template_id.css_check_top_payee_name_left }}in;"/>
+                <div class="check_top_amount"
+                     t-attf-style="top: {{ data.company_id.account_check_template_id.css_check_top_amount_top }}in; left: {{ data.company_id.account_check_template_id.css_check_top_amount_left }}in;">
+                    <t t-esc="page_data['amount'].replace(data.currency_id.symbol, '')"/>
+                </div>
+                <div class="check_top_amount_in_word" t-esc="page_data['amount_in_word']"
+                     t-attf-style="top: {{ data.company_id.account_check_template_id.css_check_top_amount_in_word_top }}in; left: {{ data.company_id.account_check_template_id.css_check_top_amount_in_word_left }}in;"/>
+                <div class="check_top_payee_addr" t-esc="page_data['partner_id']"
+                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                     t-attf-style="top: {{ data.company_id.account_check_template_id.css_check_top_payee_addr_top }}in; left: {{ data.company_id.account_check_template_id.css_check_top_payee_addr_left }}in;"/>
+                <div class="check_top_memo" t-esc="page_data['memo']"
+                     t-attf-style="top: {{ data.company_id.account_check_template_id.css_check_top_memo_top }}in; left: {{ data.company_id.account_check_template_id.css_check_top_memo_left }}in;"/>
+            </div>
+            <t t-call="zillotech_us_check_print.page_details_template">
+                <t t-set="page_details_num" t-value="1"/>
+            </t>
+            <t t-call="zillotech_us_check_print.page_details_template">
+                <t t-set="page_details_num" t-value="2"/>
+            </t>
+        </template>
+    </data>
+</odoo>
