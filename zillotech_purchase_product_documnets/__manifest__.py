@@ -13,4 +13,6 @@
     "data": ['views/purchase_inherit_product_documents.xml'],
     'images': ['static/description/banner.png'],
     "application": True,
+    "price": 78.50,
+    "currency": 'USD',
 }

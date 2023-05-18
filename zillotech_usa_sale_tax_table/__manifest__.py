@@ -21,5 +21,7 @@
     'application': True,
     'sequence': 10,
     'license': 'LGPL-3',
+    'price': 78.50,
+    'currency': 'USD',
 
 }
