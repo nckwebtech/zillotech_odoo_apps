@@ -18,4 +18,6 @@
     'auto_install': False,
     'application': True,
     'sequence': 10,
+    'price': 78.50,
+    'currency': 'USD',
 }

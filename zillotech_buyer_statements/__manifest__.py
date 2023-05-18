@@ -33,6 +33,6 @@
     'auto_install': False,
     'application': True,
     'sequence': 5,
-    'price': 39.50,
+    'price': 78.50,
     'currency': 'USD',
 }
