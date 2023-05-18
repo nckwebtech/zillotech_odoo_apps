@@ -1,0 +1,96 @@
+<odoo>
+    <record id="customer_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherited.form.user</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='website']" position="after">
+                <field name="third_party_billing"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherited.form.user</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="third_party_billing" attrs="{'invisible': [('third_party_billing', '!=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit_sale_stock_inherited" model="ir.ui.view">
+        <field name="name">sale.order.stock.form.inherited.view.retail</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='warehouse_id']" position="replace">
+                <field name="warehouse_id" options="{'no_create': True, 'no_open': True}"
+                       groups="stock.group_stock_multi_warehouses" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <xpath expr="//field[@name='warehouse_id']" position="move"/>
+                <xpath expr="//field[@name='picking_policy']" position="move"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherited_retail_defaults" model="ir.ui.view">
+        <field name="name">sale.order.form.inherited.view.retail</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <xpath expr="//field[@name='client_order_ref']" position="move"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_purchase_form_inherited_retail_defaults" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherited.view.retail</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                <attribute name="options">{'no_open':True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                <field name="pl_product_image" widget="image" class="oe_avatar" height="40"/>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="print_purchase_product_image"/>
+                <field name="purchase_product_image_size"
+                       attrs="{'invisible': [('print_purchase_product_image', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_manufacturing_tree_inherited_retail_defaults" model="ir.ui.view">
+        <field name="name">manufacturer.order.tree.inherited.view.retail</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="partner_shipping_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_form_inherited_retail_defaults" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherited.view.retail</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                <xpath expr="//field[@name='carrier_id']" position="move"/>
+                <xpath expr="//label[@for='carrier_tracking_ref']" position="move"/>
+                <xpath expr="//div[@name='tracking']" position="move"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

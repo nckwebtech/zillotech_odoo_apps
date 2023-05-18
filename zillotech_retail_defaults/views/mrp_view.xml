@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_product_image_form_inherited_view" model="ir.ui.view">
+        <field name="name">mrp.production.image.form.inherited</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="bom_id" position="after">
+                <field name="print_mrp_product_image"/>
+                <field name="mrp_product_image_size" attrs="{'invisible': [('print_mrp_product_image', '=', False)]}"/>
+                <field name="partner_shipping_id"/>
+            </field>
+
+            <xpath expr="//field[@name='move_raw_ids']//tree//field[@name='product_id']" position="before">
+                <field name="stock_mv_product_img" widget="image" class="oe_avatar" readonly="1" height="40"/>
+            </xpath>
+
+            <xpath expr='//div[hasclass("oe_button_box")]' position='before'>
+                <field name="mrp_product_image" widget="image" readonly="1" class="oe_avatar" force_save="1"
+                       options='{"size": [140, 140]}'/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="mrp_bom_product_image_form_inherited_view" model="ir.ui.view">
+        <field name="name">mrp.bom.product.image.form.inherited</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="print_bom_product_image"/>
+                <field name="bom_product_image_size" attrs="{'invisible': [('print_bom_product_image', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']//tree//field[@name='product_id']" position="before">
+                <field name="bom_line_product_img" widget="image" class="oe_avatar" readonly="1" height="40"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
