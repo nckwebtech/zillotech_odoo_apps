@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="wizard_form_pricelist_export_wizard" model="ir.ui.view">
+            <field name="name">pricelist.export.wizard.form</field>
+            <field name="model">pricelist.export.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Pricelist">
+                    <group>
+                        <field name="pricelist_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="Print Excel" type="object" name="action_print_pricelist_ids"
+                                class="btn btn-primary"/>
+                        <button string="Print PDF" type="object" name="action_print_pricelist_ids"
+                                class="btn btn-primary" context="{'type':'pdf'}"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_pricelist_export_wizard" model="ir.actions.act_window">
+            <field name="name">Export Pricelist</field>
+            <field name="res_model">pricelist.export.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_form_pricelist_export_wizard"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.server" id="action_export_list_wizard">
+            <field name="name">Export Pricelist</field>
+            <field name="model_id" ref="product.model_product_pricelist"/>
+            <field name="binding_model_id" ref="product.model_product_pricelist"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_show_pricelist_export_wizard()
+            </field>
+        </record>
+    </data>
+</odoo>

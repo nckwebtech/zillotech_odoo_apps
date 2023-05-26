@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_rfq_inherited" inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//t[@t-call='web.external_layout']/div[hasclass('page')]/table/thead/tr/th"
+               position="before">
+            <th t-if="o.print_purchase_product_image">
+                Image
+            </th>
+        </xpath>
+        <xpath expr="//t[@t-call='web.external_layout']/div[hasclass('page')]/table//tbody/t/tr/t/td" position="before">
+            <td t-if="o.print_purchase_product_image">
+                <img t-if="o.purchase_product_image_size == 'sm'"
+                     t-att-src="image_data_uri(order_line.pl_product_image)"
+                     style="width: 64px; height: auto;"/>
+                <img t-if="o.purchase_product_image_size == 'md'"
+                     t-att-src="image_data_uri(order_line.pl_product_image)"
+                     style="width: 128px; height: auto;"/>
+                <img t-if="o.purchase_product_image_size == 'lg'"
+                     t-att-src="image_data_uri(order_line.pl_product_image)"
+                     style="width: 192px; height: auto;"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="report_purchase_order_inherited" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//div[hasclass('page')]/table/thead/tr/th" position="before">
+            <th t-if="o.print_purchase_product_image">
+                Image
+            </th>
+        </xpath>
+        <xpath expr="//div[hasclass('page')]/table//tbody/t/tr/t/td" position="before">
+            <td t-if="o.print_purchase_product_image">
+                <img t-if="o.purchase_product_image_size == 'sm'"
+                     t-att-src="image_data_uri(line.pl_product_image)"
+                     style="width: 64px; height: auto;"/>
+                <img t-if="o.purchase_product_image_size == 'md'"
+                     t-att-src="image_data_uri(line.pl_product_image)"
+                     style="width: 128px; height: auto;"/>
+                <img t-if="o.purchase_product_image_size == 'lg'"
+                     t-att-src="image_data_uri(line.pl_product_image)"
+                     style="width: 192px; height: auto;"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_mrp_bom_pdf_line_inherited" inherit_id="mrp.report_mrp_bom">
+        <xpath expr="//table[hasclass('o_mrp_bom_expandable')]/thead/tr/th" position="before">
+            <th t-if="data['bom'].print_bom_product_image">
+                Image
+            </th>
+        </xpath>
+        <xpath expr="//table[hasclass('o_mrp_bom_expandable')]/tbody/tr/td" position="before">
+            <td t-if="data['bom'].print_bom_product_image">
+                <img t-if="data['bom'].bom_product_image_size == 'sm'"
+                     t-att-src="image_data_uri(data['product'].image_1920)"
+                     style="width: 64px; height: auto;"/>
+                <img t-if="data['bom'].bom_product_image_size == 'md'"
+                     t-att-src="image_data_uri(data['product'].image_1920)"
+                     style="width: 128px; height: auto;"/>
+                <img t-if="data['bom'].bom_product_image_size == 'lg'"
+                     t-att-src="image_data_uri(data['product'].image_1920)"
+                     style="width: 192px; height: auto;"/>
+            </td>
+        </xpath>
+        <xpath expr="//table[hasclass('o_mrp_bom_expandable')]/tbody/tr/td[@name='td_mrp_bom_f']" position="before">
+            <td></td>
+        </xpath>
+        <xpath expr="//table[hasclass('o_mrp_bom_expandable')]/tbody/t/tr/td[@name='td_mrp_bom_byproducts_f']" position="before">
+            <td></td>
+        </xpath>
+    </template>
+
+    <template id="report_mrp_bom_line_inherited_data" inherit_id="mrp.report_mrp_bom_pdf_line">
+        <xpath expr="//t/tr/td[@name='td_mrp_code']" position="before">
+            <td t-if="data['bom'].print_bom_product_image">
+                <img t-if="l.get('prod_image',False) and data['bom'].bom_product_image_size == 'sm'"
+                     t-att-src="image_data_uri(l['prod_image'])"
+                     style="width: 64px; height: auto;"/>
+                <img t-if="l.get('prod_image',False) and data['bom'].bom_product_image_size == 'md'"
+                     t-att-src="image_data_uri(l['prod_image'])"
+                     style="width: 128px; height: auto;"/>
+                <img t-if="l.get('prod_image',False) and data['bom'].bom_product_image_size == 'lg'"
+                     t-att-src="image_data_uri(l['prod_image'])"
+                     style="width: 192px; height: auto;"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="report_mrp_order_inherited" inherit_id="mrp.report_mrp_production_components">
+        <xpath expr="//table/thead/tr/th" position="before">
+            <th t-if="o.print_mrp_product_image">
+                Image
+            </th>
+        </xpath>
+        <xpath expr="//table//tbody//tr/td" position="before">
+            <td t-if="o.print_mrp_product_image">
+                <img t-if="o.mrp_product_image_size == 'sm'"
+                     t-att-src="image_data_uri(raw_line.stock_mv_product_img)"
+                     style="width: 64px; height: auto;"/>
+                <img t-if="o.mrp_product_image_size == 'md'"
+                     t-att-src="image_data_uri(raw_line.stock_mv_product_img)"
+                     style="width: 128px; height: auto;"/>
+                <img t-if="o.mrp_product_image_size == 'lg'"
+                     t-att-src="image_data_uri(raw_line.stock_mv_product_img)"
+                     style="width: 192px; height: auto;"/>
+            </td>
+        </xpath>
+        <!-- <xpath expr="//div[hasclass('row')]/div[hasclass('col-3')][last()]" position="after">
+            <div class="col-6 text-right pr-5 pt-4" t-if="o.print_mrp_product_image and o.mrp_product_image">
+                <img t-if="o.mrp_product_image_size == 'sm'"
+                     t-att-src="'data:image/png;base64,%s' % to_text(o.mrp_product_image)"
+                     style="width: 64px; height: auto;"/>
+                <img t-if="o.mrp_product_image_size == 'md'"
+                     t-att-src="'data:image/png;base64,%s' % to_text(o.mrp_product_image)"
+                     style="width: 128px; height: auto;"/>
+                <img t-if="o.mrp_product_image_size == 'lg'"
+                     t-att-src="'data:image/png;base64,%s' % to_text(o.mrp_product_image)"
+                     style="width: 192px; height: auto;"/>
+            </div>
+        </xpath> -->
+    </template>
+
+</odoo>
