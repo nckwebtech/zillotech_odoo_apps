@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="pdf_pricelist_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-foreach="customer_list" t-as="list_rec">
+                            <t t-foreach="list_rec['price_rule_list']" t-as="rule_rec">
+                                <div class="col-xs-4">
+                                    <div class="pull-left">
+                                        <strong>
+                                            <span>Customer :</span>
+                                        </strong>
+                                        <span t-field="list_rec['customer'].name"/>
+                                    </div>
+                                    <div class="pull-right">
+                                        <strong>
+                                            <span>Pricelist :</span>
+                                        </strong>
+                                        <span t-esc="list_rec['pricelist_name']"/>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="pull-left" t-if="rule_rec['rule_name']">
+                                        <strong>
+                                            <span>Price Rule :</span>
+                                        </strong>
+                                        <span t-esc="rule_rec['rule_name']"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Name</th>
+                                            <th>Internal Reference</th>
+                                            <th>Sales Price</th>
+                                            <th>Pricelist Price</th>
+                                            <th>Discount(%)</th>
+                                            <th>Discount Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="rule_rec['product_list']" t-as="product_rec">
+                                            <td>
+                                                <span t-field="product_rec['product'].name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product_rec['product'].default_code"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product_rec['product'].list_price"
+                                                      t-options="{'widget': 'monetary', 'display_currency': list_rec['customer'].env.company.currency_id}"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="product_rec['price']"
+                                                      t-options="{'widget': 'monetary', 'display_currency': list_rec['customer'].env.company.currency_id}"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="product_rec['discount']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="product_rec['discount_amount']"
+                                                      t-options="{'widget': 'monetary', 'display_currency': list_rec['customer'].env.company.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_pdf_pricelist_report" model="ir.actions.report">
+            <field name="name">Customer Pricelist Report</field>
+            <field name="model">res.partner</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">nck_pricelist_export.pdf_pricelist_report</field>
+            <field name="report_file">nck_pricelist_export.pdf_pricelist_report</field>
+            <field name="print_report_name">Customer Pricelist Report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

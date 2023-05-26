@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="wizard_form_list_export_wizard" model="ir.ui.view">
+            <field name="name">list.export.wizard.form</field>
+            <field name="model">list.export.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Customer Pricelist">
+                    <group>
+                        <field name="customer_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <footer>
+                            <button string="Print Excel" type="object" name="action_print_price_list"
+                                    class="btn btn-link" style="color:black;background-color:#8AC7DB;"/>
+                            <button string="Print PDF" type="object" name="action_print_price_list"
+                                    class="btn btn-link" style="color:black;background-color:#8AC7DB;"
+                                    context="{'type':'pdf'}"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_list_export_wizard" model="ir.actions.act_window">
+            <field name="name">Export Customer Pricelist</field>
+            <field name="res_model">list.export.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_form_list_export_wizard"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.server" id="action_export_price_list_wizard">
+            <field name="name">Export Customer Pricelist</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_show_export_wizard()
+            </field>
+        </record>
+    </data>
+</odoo>
