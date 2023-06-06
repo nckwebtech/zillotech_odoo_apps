@@ -1,6 +1,6 @@
 <odoo>
 
-    <template id="nck_commission_sales_report.commission_sales">
+    <template id="zillotech_commission_sales_report.commission_sales">
         <t t-call="web.html_container">
             <t t-set="data_report_margin_top" t-value="12"/>
             <t t-set="data_report_header_spacing" t-value="9"/>
@@ -161,8 +161,8 @@
         <field name="name">Commission Sales</field>
         <field name="model">account.commission.sales</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">nck_commission_sales_report.commission_sales</field>
-        <field name="report_file">nck_commission_sales_report.commission_sales</field>
+        <field name="report_name">zillotech_commission_sales_report.commission_sales</field>
+        <field name="report_file">zillotech_commission_sales_report.commission_sales</field>
     </record>
 
 </odoo>

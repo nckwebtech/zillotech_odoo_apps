@@ -1,4 +1,4 @@
-odoo.define('nck_commission_sales_report.product_sale', function (require) {
+odoo.define('zillotech_commission_sales_report.product_sale', function (require) {
     'use strict';
     var AbstractAction = require('web.AbstractAction');
     var core = require('web.core');
@@ -125,8 +125,8 @@ odoo.define('nck_commission_sales_report.product_sale', function (require) {
                 var action = {
                     'type': 'ir.actions.report',
                     'report_type': 'qweb-pdf',
-                    'report_name': 'nck_commission_sales_report.commission_sales',
-                    'report_file': 'nck_commission_sales_report.commission_sales',
+                    'report_name': 'zillotech_commission_sales_report.commission_sales',
+                    'report_file': 'zillotech_commission_sales_report.commission_sales',
                     'data': {
                         'report_data': data
                     },

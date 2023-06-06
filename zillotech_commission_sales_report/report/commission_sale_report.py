@@ -2,7 +2,7 @@ from odoo import api, models, _
 
 
 class CommissionSales(models.AbstractModel):
-    _name = 'report.nck_commission_sales_report.commission_sales'
+    _name = 'report.zillotech_commission_sales_report.commission_sales'
 
     @api.model
     def _get_report_values(self, docids, data=None):

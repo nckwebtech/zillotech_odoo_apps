@@ -9,7 +9,7 @@ class ResPartnerData(models.Model):
                 'name': _('Export Customer Pricelist'),
                 'res_model': 'list.export.wizard',
                 'target': 'new',
-                'view_id': self.env.ref('nck_pricelist_export.wizard_form_list_export_wizard').id,
+                'view_id': self.env.ref('zillotech_pricelist_export.wizard_form_list_export_wizard').id,
                 'view_mode': 'form',
                 'context': {'default_customer_ids': self.ids}
                 }
@@ -23,7 +23,7 @@ class Pricelist(models.Model):
                 'name': _('Export Pricelist'),
                 'res_model': 'pricelist.export.wizard',
                 'target': 'new',
-                'view_id': self.env.ref('nck_pricelist_export.wizard_form_pricelist_export_wizard').id,
+                'view_id': self.env.ref('zillotech_pricelist_export.wizard_form_pricelist_export_wizard').id,
                 'view_mode': 'form',
                 'context': {'default_pricelist_ids': self.ids}
                 }
