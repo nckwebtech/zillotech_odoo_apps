@@ -88,7 +88,7 @@
         <field name="view_id" ref="financial_report_wiz_modified"/>
     </record>
 
-    <menuitem id="menu_report_commission" action="nck_commission_sales_report.action_sales_product_wizard"
+    <menuitem id="menu_report_commission" action="zillotech_commission_sales_report.action_sales_product_wizard"
               name="Commission Sales Report" parent="commission_sales_report_accounting"/>
 
 

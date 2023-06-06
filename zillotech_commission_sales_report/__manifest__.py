@@ -19,12 +19,12 @@
              ],
     'assets': {
         'web.assets_backend': [
-            'nck_commission_sales_report/static/src/css/report.css',
-            'nck_commission_sales_report/static/src/js/product_sale.js',
+            'zillotech_commission_sales_report/static/src/css/report.css',
+            'zillotech_commission_sales_report/static/src/js/product_sale.js',
 
         ],
         'web.assets_qweb': [
-            'nck_commission_sales_report/static/src/xml/product_commission_templates.xml',
+            'zillotech_commission_sales_report/static/src/xml/product_commission_templates.xml',
         ],
     },
     'images': ['static/description/banner.png'],

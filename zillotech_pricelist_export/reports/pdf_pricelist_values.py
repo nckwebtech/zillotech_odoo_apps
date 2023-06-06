@@ -2,7 +2,7 @@ from odoo import models, api
 
 
 class CustomerPricelist(models.AbstractModel):
-    _name = 'report.nck_pricelist_export.pdf_pricelist_report'
+    _name = 'report.zillotech_pricelist_export.pdf_pricelist_report'
     _description = 'PDF pricelist report'
 
     @api.model
@@ -14,7 +14,7 @@ class CustomerPricelist(models.AbstractModel):
 
 
 class PricelistExport(models.AbstractModel):
-    _name = 'report.nck_pricelist_export.export_pdf_pricelist_report'
+    _name = 'report.zillotech_pricelist_export.export_pdf_pricelist_report'
     _description = 'Export pricelist report'
 
     @api.model

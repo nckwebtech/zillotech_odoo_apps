@@ -15,7 +15,7 @@ class PriceListExport(models.TransientModel):
     attachment_id = fields.Many2one('ir.attachment', string='Attachment')
 
     def _price_list_pdf(self, customer_ids):
-        return self.env.ref('nck_pricelist_export.action_pdf_pricelist_report').report_action(self, data={
+        return self.env.ref('zillotech_pricelist_export.action_pdf_pricelist_report').report_action(self, data={
             'customer_ids': customer_ids})
 
     def action_print_price_list(self):
