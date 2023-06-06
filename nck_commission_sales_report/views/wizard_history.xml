@@ -1,0 +1,68 @@
+<odoo>
+    <odoo>
+
+        <record id='commission_customer_line_history_view_tree' model='ir.ui.view'>
+            <field name="name">commission.customer.line.history.tree</field>
+            <field name="model">commission.customer.line.history</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Customers" editable="bottom">
+                    <field name="partner_id"/>
+                    <field name="company_name"/>
+                    <field name="commission"/>
+                    <field name="wizard_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='product_commission_deduct_history_view_tree' model='ir.ui.view'>
+            <field name="name">product.commission.deduct.history.tree</field>
+            <field name="model">product.commission.deduct.history</field>
+            <field name="arch" type="xml">
+                <tree string="Deduct On Products" editable="bottom">
+                    <field name="product_id"/>
+                    <field name="deduct_amount"/>
+                    <field name="wizard_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='product_commission_deduct_view_tree' model='ir.ui.view'>
+            <field name="name">product.commission.deduct.history.tree</field>
+            <field name="model">product.commission.deduct.history</field>
+            <field name="arch" type="xml">
+                <tree string="Deduct On Products" editable="bottom">
+                    <field name="product_id"/>
+                    <field name="deduct_amount"/>
+                    <field name="wizard_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='sales_product_wizard_history' model='ir.ui.view'>
+            <field name="name">account.commission.wizard.history.view</field>
+            <field name="model">account.commission.wizard.history</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="report_name"/>
+                        <field name="date_from_filter"/>
+                        <field name="date_to_filter"/>
+                        <field name="add_report_product_ids" widget="many2many_tags" nolabel="1"/>
+                        <field name="commission_value"/>
+                        <field name="commission_customer_line_ids" nolabel="1"/>
+                        <field name="deduct_product_line_ids" nolabel="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sales_product_wizard_history" model="ir.actions.act_window">
+            <field name="name">Dynamic Reports History</field>
+            <field name="res_model">account.commission.wizard.history</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="sales_product_wizard_history"/>
+        </record>
+
+    </odoo>
+</odoo>

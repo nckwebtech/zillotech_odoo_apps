@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id='commission_customer_line_view_tree' model='ir.ui.view'>
+        <field name="name">commission.customer.line.tree</field>
+        <field name="model">commission.customer.line</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Customers" editable="bottom">
+                <field name="partner_id"/>
+                <field name="company_name"/>
+                <field name="commission"/>
+                <field name="wizard_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='product_commission_deduct_view_tree' model='ir.ui.view'>
+        <field name="name">product.commission.deduct.tree</field>
+        <field name="model">product.commission.deduct</field>
+        <field name="arch" type="xml">
+            <tree string="Deduct On Products" editable="bottom">
+                <field name="product_id"/>
+                <field name="deduct_amount"/>
+                <field name="wizard_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

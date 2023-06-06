@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <menuitem id="commission_sales_report_accounting" sequence="18"
+                  name="Commission Reports" parent="account.menu_finance_reports"/>
+
+    </data>
+</odoo>
