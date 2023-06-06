@@ -1,0 +1,95 @@
+<odoo>
+    <record id="financial_report_wiz_modified" model="ir.ui.view">
+        <field name="name">account.commission.wizard.wiz</field>
+        <field name="model">account.commission.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="customer_edit" type="object"
+                            string="Edit Customers"
+                            help="updates the commission customer line field with commission value"
+                            class="btn-primary"
+                            attrs="{'invisible': ['|',('group_view', '=', True), ('product_view','=', True)]}"/>
+
+                    <button name="customer_edit_back" type="object"
+                            string="Back to Commission Report"
+                            help="updates the commission customer line field with commission value"
+                            class="btn-secondary" attrs="{'invisible': [('group_view', '!=', True)]}"/>
+                    <button name="customer_edit_back" type="object"
+                            string="Back to Commission Report"
+                            help="updates the commission customer line field with commission value"
+                            class="btn-secondary" attrs="{'invisible': [('product_view','!=', True)]}"/>
+                    <button name="product_edit" type="object"
+                            string="Deduct for Product"
+                            help="update the deducts for product."
+                            class="btn btn-primary"
+                            attrs="{'invisible': ['|', ('group_view', '=', True), ('product_view','=', True)]}"/>
+                </header>
+                <group>
+                    <group string="Report Details"
+                           attrs="{'invisible': ['|',('group_view', '=', True), ('product_view','=', True)]}">
+                        <field name="report_name"/>
+                    </group>
+                    <group string="Date Details"
+                           attrs="{'invisible': ['|',('group_view', '=', True), ('product_view','=', True)]}">
+                        <field name="date_from_filter"/>
+                        <field name="date_to_filter"/>
+                    </group>
+                    <group colspan="4">
+                        <field name="group_view" invisible="1"/>
+                        <field name="product_view" invisible="1"/>
+                    </group>
+                    <group colspan="4" string="Add Products To Report"
+                           attrs="{'invisible': ['|',('group_view', '=', True), ('product_view','=', True)]}">
+                        <group col="2">
+                            <field name="add_report_product_ids" widget="many2many_tags" nolabel="1"/>
+                        </group>
+                    </group>
+
+                    <group colspan="4" string="Edit Customer"
+                           attrs="{'invisible': [('group_view', '!=', True)]}">
+                        <group col="2">
+                            <label for="commission_value"/>
+                            <div class="o_row">
+                                <field name="commission_value"/>
+                                <button name="customer_update" type="object"
+                                        string="Update to Customer Lines"
+                                        help="updates the commission customer line field with commission value"
+                                        class="btn-link mb-1 px-0" icon="fa-refresh"
+                                        confirm="This will update the customer value in customer lines"/>
+                            </div>
+                        </group>
+                        <br/>
+                        <br/>
+                        <field name="commission_customer_line_ids" nolabel="1"/>
+                    </group>
+                    <group colspan="4" string="Add Deduct for Products"
+                           attrs="{'invisible': [('product_view', '!=', True)]}">
+                        <br/>
+                        <br/>
+                        <field name="deduct_product_line_ids" nolabel="1"/>
+                        <field name="onchange_field" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="View" type="object" name="view_wizard"
+                            class="btn-primary"/>
+                    <button string="Discard" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sales_product_wizard" model="ir.actions.act_window">
+        <field name="name">Dynamic Reports</field>
+        <field name="res_model">account.commission.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="financial_report_wiz_modified"/>
+    </record>
+
+    <menuitem id="menu_report_commission" action="nck_commission_sales_report.action_sales_product_wizard"
+              name="Commission Sales Report" parent="commission_sales_report_accounting"/>
+
+
+</odoo>

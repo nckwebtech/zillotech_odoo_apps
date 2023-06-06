@@ -1,0 +1,347 @@
+<templates>
+    <t t-name="CommissionReportTemp">
+        <div class="">
+            <div class="">
+                <h1 style="padding:10px">
+                    Commission Sales Report
+                </h1>
+
+            </div>
+
+            <div>
+                <div class="filter_view_tb"></div>
+            </div>
+            <br></br>
+            <div>
+                <div class="table_view_tb" style="right:20px;"></div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="CommissionSaleTable">
+        <div>
+            <div class="table_main_view">
+                <table cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th colspan="mon_fld" style="text-align:left">No</th>
+                            <th colspan="5">Company Name</th>
+                            <th class="mon_fld" style="text-align:right;">Commission ( % )</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="none_value" t-value="_"/>
+                        <t t-foreach="product_report_lines[0]" t-as="account">
+                            <t t-set="common_id" t-value="0"/>
+                            <tr style="border: 1.5px solid black;" class="gl-line"
+                                data-toggle="collapse"
+                                t-att-data-account-id="account['partner_id']"
+                                t-attf-data-target=".a{{account['partner_id']}}">
+                                <td style="text-align:left;width:1.5%">
+                                    <t t-if="account['row'] == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="account['row']"/>
+                                    </t>
+
+                                </td>
+                                <td colspan="2" style="border: 0px solid black;">
+                                    <i class="fa fa-caret-down" role="img" aria-label="Unfolded" title="Unfolded"/>
+
+                                    <span>
+
+                                        <t t-esc="account['partner_name']"/>
+                                    </span>
+                                    <td style="text-align:right;"/>
+                                    <td style="text-align:right;"/>
+                                    <td style="text-align:right;"/>
+                                    <td style="text-align:right;">
+                                        <t t-if="account.commission_percentage">
+                                            <t t-esc="account.commission_percentage"/>
+                                            % Commission
+                                        </t>
+                                        <t t-else="">
+                                            <span>-</span>
+                                        </t>
+                                    </td>
+                                </td>
+                                <tr t-attf-class="collapse a{{account['partner_id']}}">
+                                    <td colspan="14">
+                                        <ul>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tr>
+                        </t>
+                        <tr style="border: 1.5px solid black;" class="gl-line">
+                            <td style="text-align:left;width:1.5%"/>
+                            <td colspan="2" style="border: 0px solid black;">
+
+                                <span>
+
+                                    <strong>Total Sales</strong>
+                                </span>
+                                <td class="mon_fld" style="text-align:right">
+                                    <strong>
+                                        QTY Sold: <t t-esc="product_report_lines[2][0]['all_qty_total']"/>
+                                    </strong>
+                                </td>
+                                <td style="text-align:right;"/>
+                                <t t-if="product_report_lines[2][0]['currency'] == 'before'">
+                                    <td class="mon_fld" style="text-align:right">
+                                        <strong>
+                                           Amount :  <t t-esc="product_report_lines[2][0]['symbol']"/>
+                                            <t t-esc="product_report_lines[2][0]['line_all_total']"/>
+                                        </strong>
+                                    </td>
+                                    <td class="mon_fld" style="text-align:center">
+                                        <strong>
+                                           Commission Amount : <t t-esc="product_report_lines[2][0]['symbol']"/>
+                                            <t t-esc="product_report_lines[2][0]['all_commission_total']"/>
+                                        </strong>
+                                    </td>
+                                </t>
+                                <t t-else="">
+
+                                    <td class="mon_fld" style="text-align:left">
+                                        <strong>
+                                            <t t-raw="Math.round(product_report_lines[2][0]['line_all_total'] * Math.pow(10, 2)) / Math.pow(10, 2)"/>
+                                            <t t-esc="product_report_lines[2][0]['symbol']"/>
+                                        </strong>
+                                    </td>
+                                    <td class="mon_fld" style="text-align:left">
+                                        <strong>
+                                            <t t-raw="Math.round(product_report_lines[2][0]['all_commission_total'] * Math.pow(10, 2)) / Math.pow(10, 2)"/>
+                                            <t t-esc="product_report_lines[2][0]['symbol']"/>
+                                        </strong>
+                                    </td>
+                                </t>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </t>
+
+
+    <t t-name="SubSectionalCommissionInvoice">
+        <div class="gl-table-div">
+            <table class="table table-sm o_main_table"
+                   style="border: 0px solid black;display compact;" id="SubTable">
+                <thead>
+                    <tr style="">
+                        <th>Entry Label</th>
+                        <th>Invoice Date</th>
+                        <th>IR</th>
+                        <th>Product</th>
+                        <th>QTY</th>
+                        <th>Sales Price</th>
+                        <th>Amount</th>
+                        <th>Commission</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="account_data" t-as="account_line">
+                        <tr>
+                            <td>
+                                <t t-if="account_line.mov_id">
+                                    <div class="dropdown dropdown-toggle">
+                                        <a data-toggle="dropdown" href="#">
+                                            <span class="caret"></span>
+                                            <span>
+                                                <t t-esc="account_line.move"/>
+                                            </span>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                            <li>
+                                                <a class="view-account-move" tabindex="-1" href="#"
+                                                   t-att-data-move-id="account_line.mov_id">
+                                                    View Source move
+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-esc="account_line.invoice_date"/>
+                            </td>
+                            <td>
+                                <t t-esc="account_line.internal_reference"/>
+                            </td>
+                            <td>
+                                <t t-esc="account_line.product_name"/>
+                            </td>
+                            <td>
+                                <t t-esc="account_line.invoice_quantity"/>
+                            </td>
+                            <t t-if="account_line.currency == 'before'">
+                                <td>
+                                    <t t-if="account_line.list_price == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="account_line.symbol"/>
+                                        <t t-esc="account_line.list_price"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="account_line.amount == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="account_line.symbol"/>
+                                        <t t-esc="account_line.amount"/>
+                                    </t>
+                                </td>
+
+                                <td>
+                                    <t t-if="account_line.commission_amount == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="account_line.symbol"/>
+                                        <t t-esc="account_line.commission_amount"/>
+                                    </t>
+                                </td>
+
+                            </t>
+                            <t t-else="">
+                                <td>
+                                    <t t-if="account_line.list_price == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+
+                                        <t t-esc="account_line.list_price"/>
+                                        <t t-esc="account_line.symbol"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="account_line.amount == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="account_line.amount"/>
+                                        <t t-esc="account_line.symbol"/>
+                                    </t>
+                                </td>
+
+                                <td>
+                                    <t t-if="account_line.commission_amount == 0">
+                                        <span>-</span>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="account_line.commission_amount"/>
+                                        <t t-esc="account_line.symbol"/>
+                                    </t>
+                                </td>
+                            </t>
+                        </tr>
+
+                    </t>
+                    <tr>
+                        <td colspan="4" style="text-align:right" class="">
+                            <strong>Total Sales <t t-esc="total_data['partner_name']"/>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                            </strong>
+                        </td>
+                        <td class="mon_fld" style="text-align:left">
+                            <strong>
+                                <t t-esc="total_data['total_qty_sold']"/>
+                            </strong>
+                        </td>
+                        <td class="mon_fld" style="text-align:left">
+                            <strong>-</strong>
+                        </td>
+                        <t t-if="total_data['currency'] == 'before'">
+                            <td class="mon_fld" style="text-align:left">
+                                <strong>
+                                    <t t-esc="total_data['symbol']"/>
+                                    <t t-esc="total_data['line_amount_total']"/>
+                                </strong>
+                            </td>
+                            <td class="mon_fld" style="text-align:left">
+                                <strong>
+                                    <t t-esc="total_data['symbol']"/>
+                                    <t t-esc="total_data['commission_amount_total']"/>
+                                </strong>
+                            </td>
+                        </t>
+                        <t t-else="">
+
+                            <td class="mon_fld" style="text-align:left">
+                                <strong>
+                                    <t t-raw="Math.round(total_data['line_amount_total'] * Math.pow(10, 2)) / Math.pow(10, 2)"/>
+                                    <t t-esc="total_data['symbol']"/>
+                                </strong>
+                            </td>
+                            <td class="mon_fld" style="text-align:left">
+                                <strong>
+                                    <t t-raw="Math.round(total_data['commission_amount_total'] * Math.pow(10, 2)) / Math.pow(10, 2)"/>
+                                    <t t-esc="total_data['symbol']"/>
+                                </strong>
+                            </td>
+                        </t>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </t>
+
+    <t t-name="CommissionReportFilterView">
+        <div class="row" style="margin-right: 10px; margin-left: 10px;">
+            <div class="sub_container_left row" style="width:70%;">
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                <div class="report_print">
+                    <button type="button" class="btn btn-primary" id="pdf"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Print (PDF)
+                    </button>
+                    <button type="button" class="btn btn-primary" id="xlsx"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Export (XLSX)
+                    </button>
+                </div>
+
+
+            </div>
+            <div class="sub_container_right row" style="width:30%;height:3%;top:0px;position: relative;">
+
+                <div class="margin_table" style="">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span>Start Date :</span>
+                                </th>
+                                <th>
+                                    <t t-esc="wizard_data['date_from_filter']"/>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span>End Date :</span>
+                                </th>
+                                <th>
+                                    <t t-esc="wizard_data.date_to_filter"/>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                &amp;nbsp;&amp;nbsp;
+
+            </div>
+        </div>
+
+    </t>
+
+</templates>
